@@ -1,17 +1,18 @@
-list_of_authorized_users = ['Steve Jobs', 'Tem Cook', 'Steve Wozniak', 'Jonny Ive']
-entered_user = input('Enter your name for authorize: ')
+list_of_authorized_users = ['Jobs', 'Cook', 'Wozniak']
+authorization = input('Enter your name for authorization: ')
 
 
-def decorator(checking):
-    print('Authorize of user')
-    checking()
-    print('Successful')
-    return checking
+def logging(func):
+    def wrapper():
+        if authorization in list_of_authorized_users:
+            func()
+        else:
+            print(authorization, ', its not for you!')
+    return wrapper()
 
 
-@decorator
 def secret():
-    if entered_user in list_of_authorized_users:
-        print(entered_user)
-    else:
-        print('NOT')
+    print('Im glad to see you,', authorization)
+
+
+logging(secret)
