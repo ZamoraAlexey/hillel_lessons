@@ -1,8 +1,9 @@
 import csv
 
-result = []
 with open('students.csv') as File:
-    reader = csv.DictReader(File)
+    reader = csv.reader(File)
     for row in reader:
-        result.append(row)
-    print(result)
+        print(row)
+        row = dict(row)
+
+
